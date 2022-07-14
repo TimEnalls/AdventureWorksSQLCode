@@ -1,6 +1,4 @@
-**WINDOW FUNCTION: ORDER DATE DIFFERENCE**
-ALTER VIEW [dbo].[vWindowFunctionLEAD_OrderDay_Difference]
-AS
+*****WINDOW FUNCTION: ORDER DATE DIFFERENCE
 WITH OrderDateDifferenceTable AS
 (
 SELECT 

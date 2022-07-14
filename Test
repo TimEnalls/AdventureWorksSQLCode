@@ -1,0 +1,20 @@
+WINDOW FUNCTION: ORDER DATE DIFFERENCE
+ALTER VIEW [dbo].[vWindowFunctionLEAD_OrderDay_Difference]
+AS
+WITH OrderDateDifferenceTable AS
+(
+SELECT 
+	[CustomerID]
+	,[OrderDate]
+	,LEAD(OrderDate, 1) OVER (PARTITION BY CustomerID ORDER BY OrderDate) AS NextOrderDate
+
+FROM [AdventureWorks].[Sales].[SalesOrderHeader]
+)
+
+SELECT 
+	[CustomerID]
+	,[OrderDate]
+	,NextOrderDate
+	,DATEDIFF(dd, OrderDate, NextOrderDate) as OrderDayDifference
+FROM OrderDateDifferenceTable
+GO
